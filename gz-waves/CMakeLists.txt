@@ -3,7 +3,15 @@ cmake_minimum_required(VERSION 3.10.2)
 #============================================================================
 # Initialize the project
 #============================================================================
-project(gz-waves1 VERSION 1.0.0)
+project(gz-waves1 VERSION 1.0.1)
+
+#============================================================================
+# Find ament_cmake
+#============================================================================
+
+# disable definiton of uninstall target, because gz_configure_project already does it.
+set(AMENT_CMAKE_UNINSTALL_TARGET OFF CACHE BOOL "" FORCE)
+find_package(ament_cmake REQUIRED)
 
 #============================================================================
 # Find gz-cmake
@@ -356,3 +364,20 @@ gz_create_packages()
 #============================================================================
 
 # TODO: add documentation api.md.in files
+
+#============================================================================
+# Install models/worlds and set GZ environment variables
+#============================================================================
+set(MODELS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../gz-waves-models")
+
+install(
+  DIRECTORY
+    ${MODELS_DIR}/models
+    ${MODELS_DIR}/world_models
+    ${MODELS_DIR}/worlds
+  DESTINATION share/${PROJECT_NAME}
+)
+
+ament_environment_hooks("${MODELS_DIR}/environment.dsv.in")
+
+ament_package()
