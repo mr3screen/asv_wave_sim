@@ -68,8 +68,7 @@ Compile the package:
 ```bash
 colcon build --symlink-install --merge-install --cmake-args \
 -DCMAKE_BUILD_TYPE=RelWithDebInfo \
--DBUILD_TESTING=ON \
--DCMAKE_CXX_STANDARD=17
+-DBUILD_TESTING=ON
 ```
 
 Source the workspace:
@@ -84,7 +83,6 @@ source ./install/setup.bash
 colcon build --symlink-install --merge-install --cmake-args \
 -DCMAKE_BUILD_TYPE=RelWithDebInfo \
 -DBUILD_TESTING=ON \
--DCMAKE_CXX_STANDARD=17 \
 -DCMAKE_MACOSX_RPATH=FALSE \
 -DCMAKE_INSTALL_NAME_DIR=$(pwd)/install/lib
 ```
